@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Title</title>
+    <script src="https://d3js.org/d3-selection.v1.min.js"></script>
+    <script src="https://d3js.org/d3-array.v1.min.js"></script>
+</head>
+<body>
+<h3>Inspect the generated HTML using your browser's development tools</h3>
+
+<div id="section">
+    <p>Paragraph 1</p>
+    <p>Paragraph 2</p>
+</div>
+
+<script>
+
+    const numbers = [6, 2, 5, 7, 9];
+
+    const selection = d3.select("#section")
+                        .selectAll("p")
+                        .data(numbers);
+
+
+    selection.text(d => "Old: " + d); //将数据绑定并替换 现有子元素的文本
+
+    const newSelection = selection.enter();  // 设置数据绑定的占位符
+    newSelection.append("p")
+                .text(d => "New: " + d);    // 将 数据绑定到占位符上
+
+
+    console.log("Selection", selection);
+    console.log("New Selection", newSelection);
+
+</script>
+</body>
+</html>
